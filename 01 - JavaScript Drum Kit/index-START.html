@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Drum Solo!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="keys">
+    <div class="key" data-key="65">
+      <div class="kbd-key">A</div>
+      <span class="sound">boom</span>
+    </div>
+    <div class="key" data-key="83">
+      <div class="kbd-key">S</div>
+      <span class="sound">clap</span>
+    </div>
+    <div class="key" data-key="68">
+      <div class="kbd-key">D</div>
+      <span class="sound">hihat</span>
+    </div>
+    <div class="key" data-key="70">
+      <div class="kbd-key">F</div>
+      <span class="sound">kick</span>
+    </div>
+    <div class="key" data-key="71">
+      <div class="kbd-key">G</div>
+      <span class="sound">openhat</span>
+    </div>
+    <div class="key" data-key="72">
+      <div class="kbd-key">H</div>
+      <span class="sound">ride</span>
+    </div>
+    <div class="key" data-key="74">
+      <div class="kbd-key">J</div>
+      <span class="sound">snare</span>
+    </div>
+    <div class="key" data-key="75">
+      <div class="kbd-key">K</div>
+      <span class="sound">tink</span>
+    </div>
+    <div class="key" data-key="76">
+      <div class="kbd-key">L</div>
+      <span class="sound">tom</span>
+    </div>
+  </div>
+
+  <audio src="./sounds/boom.wav" data-key="65"></audio>
+  <audio src="./sounds/clap.wav" data-key="83"></audio>
+  <audio src="./sounds/hihat.wav" data-key="68"></audio>
+  <audio src="./sounds/kick.wav" data-key="70"></audio>
+  <audio src="./sounds/openhat.wav" data-key="71"></audio>
+  <audio src="./sounds/ride.wav" data-key="72"></audio>
+  <audio src="./sounds/snare.wav" data-key="74"></audio>
+  <audio src="./sounds/tink.wav" data-key="75"></audio>
+  <audio src="./sounds/tom.wav" data-key="76"></audio>
+
+  <script>
+    function playSound(e) {
+      let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+      let key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+      if (!audio) return 
+
+      audio.currentTime = 0
+      audio.play()
+
+      key.classList.add('playing')
+    }
+
+    function removePlaying(e) {
+      if(e.type !== 'transitionend') return
+      this.classList.remove('playing')
+    }
+
+    document.addEventListener('keydown', playSound)
+    let keys = document.querySelectorAll('.key')
+    keys.forEach(key => {
+      key.addEventListener('transitionend', removePlaying)
+    })
+  </script>
+</body>
+</html>

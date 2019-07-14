@@ -1,0 +1,219 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+<body>
+
+
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+
+  <style>
+    html {
+      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display: flex;
+      flex: 1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      position: relative;
+      padding: 2rem;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+
+    .hand {
+      width: 50%;
+      height: 5px;
+      background: black;
+      position: absolute;
+      top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.1s;
+      transition-timing-function: cubic-bezier(0.05, 2.19, 0.58, 1);
+    }
+
+    .hour-hand {
+      height: 8px;
+      width: 25%;
+      left: 25%;
+    }
+
+    .second-hand {
+      height: 2px;
+    }
+
+  </style>
+
+  <script>
+    let secondsHand = document.querySelector('.second-hand');
+    let minutesHand = document.querySelector('.min-hand');
+    let hoursHand = document.querySelector('.hour-hand');
+    let nowSeconds = new Date().getSeconds()
+    let nowMinutes = new Date().getMinutes()
+    let nowHours = new Date().getHours()
+    console.log(nowSeconds, nowMinutes, nowHours)
+
+    function setCurrentTime() {
+      nowSeconds = nowSeconds + 1
+      let secondsPosition = ((nowSeconds / 60) * 360) + 90
+      secondsHand.style.transform = `rotate(${secondsPosition}deg)`
+
+      nowMinutes = nowSeconds % 60 === 0 ? nowMinutes + 1 : nowMinutes
+      let minutesPosition = ((nowMinutes / 60) * 360) + 90
+      minutesHand.style.transform = `rotate(${minutesPosition}deg)`
+
+      nowHours = nowMinutes % 60 === 0 && nowSeconds % 60 === 0 ? 
+        nowHours + 1 : nowHours
+      let hoursPosition = ((nowHours / 12) * 360) + 90
+      hoursHand.style.transform = `rotate(${hoursPosition}deg)`
+    }
+    setInterval(setCurrentTime, 1000)
+  </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Clock!</title>
+</head>
+<body>
+  <style>
+    html {
+      margin: 0;
+      padding: 0;
+      background: blue url(http://unsplash.it/1500/1000?image=881&blur=5);
+      background-size: cover;
+      background-position: center;
+      font-size: 10px;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .clock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 32rem;
+      width: 32rem;
+      border: 10px solid white;
+      border-radius: 50%;
+      position: relative;
+      padding: 5px;
+      box-shadow:
+        0 0 36px black, 
+        inset 0 0 0 12px #EFEFEF,
+        inset 0 0 90px black
+    }
+
+    .clock-face {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+
+    .hand {
+      background-color: black;
+      position: absolute;
+      top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      width: 45%;
+      left: 5%;
+    }
+
+    .seconds {
+      height: 3px;
+    }
+
+    .minutes {
+      height: 3px;
+    }
+
+    .hours {
+      width: 25%;
+      height: 8px;
+      left: 25%;
+    }
+
+
+  </style>
+
+  <div class="clock">
+    <div class="clock-face">
+      <div class="seconds hand"></div>
+      <div class="minutes hand"></div>
+      <div class="hours hand"></div>
+    </div>
+  </div>
+
+  <script>
+    let secondsHand = document.querySelector('.seconds')
+    let minutesHand = document.querySelector('.minutes')
+    let hoursHand = document.querySelector('.hours')
+    let nowSeconds = new Date().getSeconds()
+    let nowMinutes = new Date().getMinutes()
+    let nowHours = new Date().getHours()
+
+    function updatePositions() {
+      nowSeconds = nowSeconds + 1
+      secondsRotation = (nowSeconds / 60) * 360 + 90
+      secondsHand.style.transform = `rotate(${secondsRotation}deg)`;
+
+      nowMinutes = nowSeconds % 60 === 0 ? nowMinutes + 1 : nowMinutes
+      let minutesRotation = (nowMinutes / 60) * 360 + 90
+      minutesHand.style.transform = `rotate(${minutesRotation}deg)`;
+
+      nowHours = nowSeconds % 60 === 0 && nowMinutes % 60 === 0 ? 
+        nowHours + 1 : nowHours
+      let hoursRotation = (nowHours / 12) * 360 + 90
+      hoursHand.style.transform = `rotate(${hoursRotation}deg)`;
+    }
+
+    setInterval(updatePositions,1000)
+  </script>
+</body>
+</html>

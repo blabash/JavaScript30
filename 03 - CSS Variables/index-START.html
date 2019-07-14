@@ -1,0 +1,162 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+<body>
+  <h1>Update CSS Variables with <span style="--base: #BADA55" class="hl">JS</span></h1>
+
+  <style>
+  
+  :root {
+    --padding: 10px;
+    --blur: 10px;
+    --base: #ffc600;
+  }
+
+  body {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #193549;
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
+  }
+  
+  img {
+    box-sizing: border-box;
+    padding: var(--padding);
+    filter: blur(var(--blur));
+    background: var(--base);
+  }
+  
+  input {
+    width: 100px;
+  }
+
+  label {
+    line-height: 50px;
+  }
+  
+  .controls {
+    padding-bottom: 50px;
+  }
+
+  .hl {
+    color: var(--base)
+  }
+  </style>
+
+  <div class="controls">
+    <label for="padding">Padding: </label>
+    <input id="padding" name="padding" type="range" min="10" max="100" value="10"
+      data-padding="px"
+    >
+
+    <label for="blur">Blur: </label>
+    <input id="blur" name="blur" type="range" min="0" max="100" value="10"
+      data-padding="px"
+    >
+    <br>
+
+    <label for="color">Background Color: </label>
+    <input id="color" name="base" type="color" value="#ffc600"> 
+  </div>
+
+  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+
+  <script>
+  
+    function updateValue(e) {
+      let suffix = e.target.dataset.padding || ''
+      console.log(e)
+      document.documentElement.style.setProperty(`--${this.name}`, `${this.value}` + suffix)
+    }
+
+    let inputs = document.querySelectorAll('input')
+    inputs.forEach(input => input.addEventListener("change", updateValue))
+    console.log(inputs)
+  </script>
+  
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    :root {
+      --padding: 10px;
+      --blur: 5px;
+      --baseColor: #BADA55;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(19, 48, 68);
+      color: white;
+    }
+
+    .controls {
+      display: flex;
+      padding-top: 30px;
+      padding-bottom: 50px;
+      width: 50%;
+      justify-content: space-evenly;
+    }
+
+    .hl {
+      color: var(--baseColor);
+    }
+
+    img {
+      padding: var(--padding);
+      background: var(--baseColor);
+      filter: blur(var(--blur));
+    }
+
+  </style>
+
+    <h1>Derpin' Around in <span class="hl">JS</span></h1>
+
+    <div class="controls">
+      <label>Border Size: 
+        <input id="padding" type="range" name="padding" min="0" max="100" value="10" data-suffix="px">
+      </label>
+      
+      <label>Blur: 
+        <input id="blur" type="range" name="blur" min="0" max="100" value="10" data-suffix="px">
+      </label>
+
+      <label>Color: 
+        <input id="color" type="color" name="baseColor" value="#BADA55" data-suffix="">
+      </label>
+    </div>
+
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  <script>
+
+    function updateValue(e) {
+      let suffix = this.dataset['suffix']
+
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+      console.log(this.value + suffix)
+    }
+
+    let inputs = document.querySelectorAll('input')
+    inputs.forEach(input => input.addEventListener('change', updateValue))
+  </script>
+</body>
+</html>

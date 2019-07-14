@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Type Ahead</title>
+  <link rel="stylesheet" href="./ownStyle.css">
+</head>
+<body>
+  <div class="search-component">
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="City or State">
+    </div>
+    <ul class="search-results">
+      <li>Filter for a city</li>
+      <li>Or a state</li>
+    </ul>
+  </div>
+
+  <script>
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+    const cities = []
+    fetch(endpoint)
+      .then(blob => blob.json())
+      .then(data => console.log(data) || cities.push(...data))
+
+    function filterCities(fragment, listOfCities) {
+      const regex = new RegExp(fragment, 'gi')
+      let matches = listOfCities.filter(city => {
+        return city.city.match(regex) || city.state.match(regex) 
+      })
+      return matches
+    }
+
+    const searchResults = document.querySelector('.search-results')
+    function populateResults() {
+      const matchingCities = filterCities(this.value, cities)
+      const regex = new RegExp(this.value, 'gi')
+      const listElements = matchingCities.map(city => {
+        let cityName = city.city.replace(regex, `<span class="hl">${this.value}</span>`)
+        let state = city.state.replace(regex, `<span class="hl">${this.value}</span>`)
+        return `
+          <li>
+            <span>${cityName}, ${state}</span>
+            ${city.population}
+          </li>
+        `
+      }).join('')
+
+      searchResults.innerHTML = this.value ? 
+        listElements : `<ul><li>Filter for a city</li><li>Or a state</li></ul>`
+    }
+
+    let searchInput = document.querySelector('input.search-input')
+    searchInput.addEventListener('keyup', populateResults)
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+html {
+    background-color: #BADA55;
+    font-family: 'helvetica neue';
+    font-weight: 200;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 40px;
+}
+
+::placeholder {
+    color: black;
+    font-family: 'helvetica neue';
+    font-weight: 200;
+}
+
+.search-component {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 10%;
+}
+
+.search-results {
+    width: 80%;
+}
+
+.search-bar {
+    top: 10%;
+    padding: 40px 80px;
+    background-color: whitesmoke;
+    /* box-shadow: 5px 3px 8px rgb(128, 128, 128); */
+    /* transform: perspective(100px) rotateX(-2deg); */
+    border-radius: 10px;
+    z-index: 5;
+    background: linear-gradient(to bottom, white 0%, rgb(223, 223, 223) 100%);
+}
+
+.hl {
+    background-color: yellow;
+}  
+
+li {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-transform: capitalize;
+    height: 50px;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 22px;
+    /* box-shadow: 5px 5px 8px rgb(160, 160, 160); */
+}
+
+li:nth-child(odd) {
+    transform: perspective(100px) rotateX(2deg) translateY(-1px);
+    background: linear-gradient(to bottom, white 0%, rgb(223, 223, 223) 100%);
+}
+
+li:nth-child(even) {
+    transform: perspective(100px) rotateX(-2deg) translateY(-1px);
+    background: linear-gradient(to bottom, white 0%, rgb(228, 228, 228) 100%);
+}
