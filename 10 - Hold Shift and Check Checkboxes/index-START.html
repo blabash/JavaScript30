@@ -6,10 +6,9 @@
 </head>
 <body>
   <style>
-
     html {
-      font-family: sans-serif;
-      background: #ffc600;
+      background-color: #BADA55;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     }
 
     .inbox {
@@ -17,13 +16,13 @@
       margin: 50px auto;
       background: white;
       border-radius: 5px;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+      box-shadow: 10px 10px 0 rgba(0,0,0,0.1)
     }
 
     .item {
       display: flex;
       align-items: center;
-      border-bottom: 1px solid #F1F1F1;
+      border-bottom: 1px solid #f1f1f1;
     }
 
     .item:last-child {
@@ -31,24 +30,26 @@
     }
 
     input:checked + p {
-      background: #F9F9F9;
+      background: rgb(235, 235, 235);
       text-decoration: line-through;
     }
 
-    input[type="checkbox"] {
+    .item > input {
       margin: 20px;
     }
 
     p {
       margin: 0;
       padding: 20px;
-      transition: background 0.2s;
+      transition: background .3s;
       flex: 1;
-      font-family:'helvetica neue';
+      font-family: 'helvetica neue';
       font-size: 20px;
       font-weight: 200;
       border-left: 1px solid #D1E2FF;
     }
+
+
   </style>
    <!--
    The following is a common layout you would see in an email client.
@@ -96,6 +97,24 @@
   </div>
 
 <script>
+
+  let lastClickedIdx = Infinity
+  function setChecked(e) {
+    if (e.shiftKey && lastClickedIdx) {
+      for(i = lastClickedIdx; i < this.dataset.key; i++){
+        checkBoxInputs[i].checked = true
+      }
+    }
+    lastClickedIdx = checkBoxInputs[this.dataset.key].checked ? this.dataset.key : false  
+  }
+
+  let checkBoxInputs = document.querySelectorAll('.inbox [type=checkbox]')
+  let counter = -1
+  checkBoxInputs.forEach(input => {
+    counter++
+    input.setAttribute('data-key', counter)
+    input.addEventListener('click', setChecked)
+  })
 </script>
 </body>
 </html>

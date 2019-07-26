@@ -3,10 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Key Detection</title>
-  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+  <!-- <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script> -->
 </head>
 <body>
+  <form onsubmit="updateTodo()">
+    <label> update me
+      <input type="text" id="derp"/>
+    </label>
+    <input type="submit" value="Submit"/>
+  </form>
+
 <script>
+  function updateTodo() {
+    document.querySelector('#derp')
+    console.log(document.querySelector('#derp'))
+  }
 </script>
 </body>
 </html>
