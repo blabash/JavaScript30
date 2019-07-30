@@ -1,71 +1,70 @@
 html {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url('http://wes.io/hx9M/oh-la-la.jpg') no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+    background: url('http://wes.io/hx9M/oh-la-la.jpg') center no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 svg {
-  width: 200px;
-  fill: white;
-  background: rgba(0, 0, 0, .15);
-  border-radius: 50%;
-  padding: 20px;
-  margin-bottom: 50px;
+    fill: white;
+    border-radius: 50%;
+    margin-bottom: 50px;
+    background: rgba(0, 0, 0, .1);
+    padding: 20px;
+    width: 150px;
 }
 
 .wrapper {
-    background: rgba(255, 255, 255, .95);
-    padding: 15px;
-    box-shadow: 0 0 0 15px rgba(0, 0, 0, .15);
+    background: rgba(255, 255, 255, .90);
+    padding: 20px;
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, .1);
 }
 
 .wrapper h2 {
     text-align: center;
-    margin-top: 0px;
+    margin-top: 0;
     font-weight: 200;
+    text-transform: uppercase;
 }
 
 .plates {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .plates li {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, .15);
-    font-weight: 100;
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    display: flex;
+}
+
+.delete-button {
+    margin: 0 0 0 auto;
 }
 
 .plates input {
     display: none;
 }
 
-.plates label {
-
-    cursor: pointer;
+input:checked + label:before {
+    content: '🌮'
 }
 
-.plates input:checked + label:before {
-    content: '🌮';
-}
-
-.plates input + label:before {
+input + label:before {
     content: '⬜️';
-    margin-right: 10px;
+    margin: 5px;
 }
 
-.add-items {
-    margin-top: 20px;
-}
-
-.add-items input {
-    outline: 0;
+.add-items input{
+    border: 1px solid rgba(0,0,0,.3);
     padding: 10px;
-    border: 1px solid rgba(0,0,0,0.1);
 }

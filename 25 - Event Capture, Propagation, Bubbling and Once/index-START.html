@@ -5,13 +5,7 @@
   <title>Understanding JavaScript's Capture</title>
 </head>
 <body class="bod">
-
-  <div class="one">
-    <div class="two">
-      <div class="three">
-      </div>
-    </div>
-  </div>
+  <div class="one"><div class="two"><div class="three derp"></div></div></div>
 
 <style>
   html {
@@ -22,8 +16,14 @@
     box-sizing: inherit; 
   }
 
+  body {
+    margin: 0;
+    height: 100vh;
+  }
+
   div {
     width: 100%;
+    height: 100%;
     padding: 100px;
   }
 
@@ -40,9 +40,20 @@
   }
 </style>
 
-<button></button>
 <script>
 
+  function logText(e) {
+    // console.dir(this.classList.value)
+    console.dir(this.classList.value)
+  }
+
+  const divs = document.querySelectorAll('div')
+  divs.forEach(div => {
+    div.addEventListener('click', logText, {
+      capture: true,
+      once: true,
+    })
+  })
 </script>
 </body>
 </html>
