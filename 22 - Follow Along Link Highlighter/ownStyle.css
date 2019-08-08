@@ -1,0 +1,58 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    font-family: 'Helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
+    background: 
+        linear-gradient(45deg, hsla(340, 50%, 50%, 30) 0%, hsla(120, 50%, 50%, 0) 70%),
+        linear-gradient(135deg, hsla(240, 50%, 50%, 30) 0%, hsla(120, 50%, 50%, 0) 70%),
+        linear-gradient(-135deg, hsla(140, 50%, 50%, 30) 0%, hsla(120, 50%, 50%, 0) 70%),
+        linear-gradient(-45deg, hsla(40, 50%, 50%, 30) 0%, hsla(120, 50%, 50%, 0) 70%)
+}
+
+a {
+    padding: 5px;
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.menu {
+    padding-inline-start: 0;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 20px;
+}
+
+.wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: justify;
+    line-height: 2;
+}
+
+.highlight {
+    transition: all 0.2s;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+}
